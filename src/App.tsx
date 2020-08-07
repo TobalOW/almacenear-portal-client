@@ -1,9 +1,10 @@
 import React from "react";
+import { CompleteRouter } from "./domain/navigation";
 
 function App() {
   return (
     <div>
-      <p>Hello AlmaceNear</p>
+      <CompleteRouter />
     </div>
   );
 }
