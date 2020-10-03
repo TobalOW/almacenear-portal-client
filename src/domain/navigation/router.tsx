@@ -6,6 +6,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { LoginPage } from "../../presentation/pages/Login";
+import { SignUpPage } from "../../presentation/pages/SignUp";
 import { DashboardPage } from "../../presentation/pages/Dashboard";
 import { NotFoundPage } from "../../presentation/pages/NotFoundPage";
 
@@ -21,7 +22,11 @@ const CompleteRouter = () => {
       <div>
         <Switch>
           <Route path="/login" component={LoginPage} />
+          <Route path="/signup" component={SignUpPage} />
           <PrivateRoute path="/dashboard" component={<DashboardPage />} />
+          <Route exact path="/">
+            <Redirect to="/dashboard" />
+          </Route>
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </div>

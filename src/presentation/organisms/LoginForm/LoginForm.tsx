@@ -42,22 +42,27 @@ const LoginForm = () => {
             </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>Contrasena</FormLabel>
-              <Input type="password" placeholder="Ingresa tu contrasena" />
+              <FormLabel>Contraseña</FormLabel>
+              <Input type="password" placeholder="Ingresa tu contraseña" />
             </FormControl>
 
             <Stack isInline justifyContent="space-between" mt={4}>
               <Box>
-                <Checkbox>Recuerdame!</Checkbox>
+                <Checkbox>Recuérdame</Checkbox>
               </Box>
               <Box>
-                <Link color={`red.500`}>¿Olvidaste tu contasena?</Link>
+                <Link color={`red.500`}>¿Olvidaste tu contaseña?</Link>
               </Box>
             </Stack>
 
             <Button width="full" mt={4} color={"red.500"}>
               Ingresar
             </Button>
+            <Link href="/signup">
+              <Button type="button" width="full" mt={4} color={"blue.500"}>
+                Regístrate
+              </Button>
+            </Link>
           </form>
         </Box>
       </Box>
