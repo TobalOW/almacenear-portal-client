@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Text,
@@ -13,6 +13,10 @@ import {
 } from "@chakra-ui/core";
 
 const LoginForm = () => {
+  useEffect(() => {
+    document.title = "Iniciar sesión | Almacenear";
+  }, []);
+
   return (
     <Box
       borderWidth={1}
