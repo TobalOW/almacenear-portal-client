@@ -15,6 +15,7 @@
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
+    "axios": "^0.20.0",
     "emotion-theming": "^10.0.27",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
@@ -24,6 +25,7 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-step-wizard": "^5.3.5",
     "typescript": "^3.9.7"
   },
   "scripts": {
