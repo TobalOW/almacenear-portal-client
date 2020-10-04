@@ -25,7 +25,7 @@ const CompleteRouter = () => {
           <Route path="/signup" component={SignUpPage} />
           <PrivateRoute path="/dashboard" component={<DashboardPage />} />
           <Route exact path="/">
-            <Redirect to="/dashboard" />
+            <Redirect to="/login" />
           </Route>
           <Route path="*" component={NotFoundPage} />
         </Switch>

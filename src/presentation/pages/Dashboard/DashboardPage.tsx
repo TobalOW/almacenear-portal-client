@@ -5,7 +5,7 @@ import { SideMenu } from "../../organisms/SideMenu";
 
 const DashboardPage = () => {
   return (
-    <Flex height="100%" width="100%" flexDirection="column">
+    <Flex height="100vh" width="100%" flexDirection="column">
       <Navbar />
       <SideMenu />
     </Flex>
