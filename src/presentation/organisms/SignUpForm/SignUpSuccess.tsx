@@ -21,14 +21,12 @@ const SignUpSuccess = (props: any) => {
   return (
     <Fragment>
       <Box textAlign="center">
-        <Text wordBreak={"break-word"} color={"red.500"}>
-          <span role="img" aria-label="Success">
-            🎉
-          </span>
-          <Heading as="h4" size="lg" ml="2">
-            ¡Bienvenid@!
-          </Heading>
-        </Text>
+        <span role="img" aria-label="Success">
+          🎉
+        </span>
+        <Heading as="h4" color="red.500" size="lg" ml="2">
+          ¡Bienvenid@!
+        </Heading>
       </Box>
 
       <Text mt="8" mb="2">

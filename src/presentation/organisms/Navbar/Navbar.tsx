@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Heading } from "@chakra-ui/core";
+import { Flex, Link, Heading } from "@chakra-ui/core";
 
 const Navbar = () => {
   return (
@@ -15,7 +15,7 @@ const Navbar = () => {
     >
       <Flex align="center" mr={5}>
         <Heading color="white" as="h1" size="lg" letterSpacing={"-.1rem"}>
-          AlmaceNear
+          <Link href="/dashboard">AlmaceNear</Link>
         </Heading>
       </Flex>
     </Flex>

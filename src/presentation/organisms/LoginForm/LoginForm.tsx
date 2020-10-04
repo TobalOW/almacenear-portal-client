@@ -28,46 +28,54 @@ const LoginForm = () => {
       boxShadow="lg"
       backgroundColor={"white"}
     >
-      <Box p={4}>
-        <Box textAlign="center">
-          <Text>Portal Administrativo</Text>
-          <Heading>
-            <Text wordBreak={"break-word"} color={"red.500"}>
-              AlmaceNear
-            </Text>
+      <Box as="section" p={4}>
+        <Box as="header" textAlign="center">
+          <Heading wordBreak={"break-word"} color={"red.500"}>
+            AlmaceNear
           </Heading>
+
+          <strong>Portal Almacenes</strong>
         </Box>
 
-        <Box my={8} textAlign="left">
-          <form>
-            <FormControl>
-              <FormLabel>Email</FormLabel>
-              <Input type="email" placeholder="Ingresa tu email" />
-            </FormControl>
+        <Box as="form" mt={8} textAlign="left">
+          <FormControl>
+            <FormLabel>Correo electrónico</FormLabel>
+            <Input
+              type="email"
+              placeholder="Ejemplo: almacenes@ejemplo.com"
+              isRequired={true}
+            />
+          </FormControl>
 
-            <FormControl mt={4}>
-              <FormLabel>Contraseña</FormLabel>
-              <Input type="password" placeholder="Ingresa tu contraseña" />
-            </FormControl>
+          <FormControl mt={4}>
+            <FormLabel>Contraseña</FormLabel>
+            <Input
+              type="password"
+              placeholder="Ingresa tu contraseña"
+              isRequired={true}
+            />
+          </FormControl>
 
-            <Stack isInline justifyContent="space-between" mt={4}>
-              <Box>
-                <Checkbox>Recuérdame</Checkbox>
-              </Box>
-              <Box>
-                <Link color={`red.500`}>¿Olvidaste tu contaseña?</Link>
-              </Box>
-            </Stack>
+          <Stack isInline justifyContent="space-between" mt={4}>
+            <Box>
+              <Checkbox>Recuérdame</Checkbox>
+            </Box>
+            <Box>
+              <Link color={`red.500`}>¿Olvidaste tu contaseña?</Link>
+            </Box>
+          </Stack>
 
-            <Button width="full" mt={4} color={"red.500"}>
-              Ingresar
-            </Button>
+          <Button type="button" width="full" my={4} color={"red.500"}>
+            Iniciar sesión
+          </Button>
+          <Text textAlign="center">
+            ¿Aún no tienes cuenta?
             <Link href="/signup">
-              <Button type="button" width="full" mt={4} color={"blue.500"}>
+              <Text as="span" ml="1" color={"blue.500"}>
                 Regístrate
-              </Button>
+              </Text>
             </Link>
-          </form>
+          </Text>
         </Box>
       </Box>
     </Box>

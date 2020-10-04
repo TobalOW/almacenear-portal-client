@@ -41,22 +41,30 @@ const SignUpBasicInfo = (props: BasicInfo) => {
     <Fragment>
       <FormControl>
         <FormLabel>¿Cómo se llama tu tienda?</FormLabel>
-        <Input type="text" placeholder={example.name} />
+        <Input type="text" placeholder={example.name} isRequired={true} />
       </FormControl>
 
       <FormControl my="4">
         <FormLabel>Ingresa tu nombre</FormLabel>
-        <Input type="email" placeholder="Ejemplo: Pedro Pérez" />
+        <Input
+          type="email"
+          placeholder="Ejemplo: Pedro Pérez"
+          isRequired={true}
+        />
       </FormControl>
 
       <FormControl my="4">
         <FormLabel>Ingresa tu correo electrónico</FormLabel>
-        <Input type="email" placeholder={example.email} />
+        <Input type="email" placeholder={example.email} isRequired={true} />
       </FormControl>
 
       <FormControl>
         <FormLabel>Contraseña</FormLabel>
-        <Input type="password" placeholder="Ingresa tu contraseña" />
+        <Input
+          type="password"
+          placeholder="Ingresa tu contraseña"
+          isRequired={true}
+        />
       </FormControl>
 
       <Box mt="3">
