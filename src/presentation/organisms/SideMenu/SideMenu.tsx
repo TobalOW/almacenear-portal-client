@@ -12,10 +12,10 @@ const SideMenu = () => {
   const navLinks: navLink[] = [
     { label: "Almacenes", to: "/stores", icon: "info" },
     { label: "Productos", to: "/products", icon: "drag-handle" },
-    { label: "Configuraciones", to: "/settings", icon: "settings" },
+    { label: "Ajustes", to: "/settings", icon: "settings" },
   ];
   return (
-    <Box as="nav" color="white" height="full" width={1 / 8}>
+    <Box as="nav" color="white" height="full" width={1 / 8} minWidth="150px">
       <List pt="20px" pl="3" height="full" backgroundColor="red.400">
         {navLinks.map((link) => (
           <ListItem pb="4" key={link.to}>

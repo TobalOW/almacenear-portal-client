@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import {
   Box,
   Text,
@@ -65,16 +66,18 @@ const LoginForm = () => {
             </Box>
           </Stack>
 
-          <Button type="button" width="full" my={4} color={"red.500"}>
-            Iniciar sesión
-          </Button>
+          <RouterLink to="/dashboard">
+            <Button type="button" width="full" my={4} color={"red.500"}>
+              Iniciar sesión
+            </Button>
+          </RouterLink>
           <Text textAlign="center">
             ¿Aún no tienes cuenta?
-            <Link href="/signup">
+            <RouterLink to="/signup">
               <Text as="span" ml="1" color={"blue.500"}>
                 Regístrate
               </Text>
-            </Link>
+            </RouterLink>
           </Text>
         </Box>
       </Box>

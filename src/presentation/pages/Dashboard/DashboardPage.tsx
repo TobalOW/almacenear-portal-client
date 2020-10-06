@@ -1,7 +1,16 @@
 import React, { useEffect } from "react";
-import { Flex } from "@chakra-ui/core";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+
+import { Box, Flex } from "@chakra-ui/core";
+
 import { Navbar } from "../../organisms/Navbar";
 import { SideMenu } from "../../organisms/SideMenu";
+import Header from "../../organisms/Header/Header";
 
 const DashboardPage = () => {
   useEffect(() => {
@@ -9,10 +18,13 @@ const DashboardPage = () => {
   }, []);
 
   return (
-    <Flex height="100vh" width="100%" flexDirection="column">
+    <Box height="100vh" width="100%">
       <Navbar />
-      <SideMenu />
-    </Flex>
+      <Flex height="full" bg="gray.100">
+        <SideMenu />
+        <Header title="Dashboard" />
+      </Flex>
+    </Box>
   );
 };
 export default DashboardPage;
