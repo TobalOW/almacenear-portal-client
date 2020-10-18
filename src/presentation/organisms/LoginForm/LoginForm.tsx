@@ -11,6 +11,7 @@ import {
   Stack,
   Checkbox,
   Button,
+  Image,
 } from "@chakra-ui/core";
 
 const LoginForm = () => {
@@ -28,14 +29,22 @@ const LoginForm = () => {
       textAlign="center"
       boxShadow="lg"
       backgroundColor={"white"}
+      position="relative"
     >
-      <Box as="section" p={4}>
-        <Box as="header" textAlign="center">
-          <Heading wordBreak={"break-word"} color={"red.500"}>
-            AlmaceNear
-          </Heading>
+      <Box position="absolute" left="0" right="0" top="-200px">
+        <Image
+          src="https://via.placeholder.com/300x180"
+          alt="Almacenear"
+          title="Te damos la bienvenida a Almacenear"
+          mx="auto"
+        />
+      </Box>
 
-          <strong>Portal Almacenes</strong>
+      <Box as="section" p={4}>
+        <Box as="header" mt="4">
+          <Heading as="h2" size="sm" textAlign="center" color="gray.600">
+            Portal del Almacenero
+          </Heading>
         </Box>
 
         <Box as="form" mt={8} textAlign="left">
@@ -43,8 +52,12 @@ const LoginForm = () => {
             <FormLabel>Correo electrónico</FormLabel>
             <Input
               type="email"
-              placeholder="Ejemplo: almacenes@ejemplo.com"
+              placeholder="Ejemplo: almacen@ejemplo.com"
               isRequired={true}
+              size="sm"
+              borderWidth="1"
+              borderColor="gray.400"
+              borderRadius="lg"
             />
           </FormControl>
 
@@ -54,6 +67,10 @@ const LoginForm = () => {
               type="password"
               placeholder="Ingresa tu contraseña"
               isRequired={true}
+              size="sm"
+              borderWidth="1"
+              borderColor="gray.400"
+              borderRadius="lg"
             />
           </FormControl>
 
@@ -62,19 +79,32 @@ const LoginForm = () => {
               <Checkbox>Recuérdame</Checkbox>
             </Box>
             <Box>
-              <Link color={`red.500`}>¿Olvidaste tu contaseña?</Link>
+              <Link color={`red.400`}>¿Olvidaste tu contaseña?</Link>
             </Box>
           </Stack>
 
           <RouterLink to="/dashboard">
-            <Button type="button" width="full" my={4} color={"red.500"}>
+            <Button
+              type="button"
+              width="full"
+              my="4"
+              bg="red.500"
+              color="white"
+              shadow="md"
+            >
               Iniciar sesión
             </Button>
           </RouterLink>
           <Text textAlign="center">
             ¿Aún no tienes cuenta?
             <RouterLink to="/signup">
-              <Text as="span" ml="1" color={"blue.500"}>
+              <Text
+                as="span"
+                ml="1"
+                display="block"
+                color="yellow.400"
+                fontWeight="bold"
+              >
                 Regístrate
               </Text>
             </RouterLink>

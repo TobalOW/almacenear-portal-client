@@ -21,11 +21,11 @@ const SignUpSuccess = (props: any) => {
   return (
     <Fragment>
       <Box textAlign="center">
-        <span role="img" aria-label="Success">
+        <Text as="span" role="img" aria-label="Success" fontSize="32px">
           🎉
-        </span>
+        </Text>
         <Heading as="h4" color="red.500" size="lg" ml="2">
-          ¡Bienvenid@!
+          ¡Excelente!
         </Heading>
       </Box>
 

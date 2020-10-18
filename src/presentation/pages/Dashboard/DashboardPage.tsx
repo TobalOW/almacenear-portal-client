@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
 
+import { Route } from "react-router-dom";
 import { Box, Flex } from "@chakra-ui/core";
 
 import { Navbar } from "../../organisms/Navbar";
 import { SideMenu } from "../../organisms/SideMenu";
-import Header from "../../organisms/Header/Header";
+import { DefaultDashboard } from "../../organisms/Dashboard";
+
+import StorePage from "../../pages/Stores/StorePage";
 
 const DashboardPage = () => {
   useEffect(() => {
@@ -16,7 +19,15 @@ const DashboardPage = () => {
       <Navbar />
       <Flex height="full" bg="gray.100">
         <SideMenu />
-        <Header title="Dashboard" />
+        <Flex direction="column" width="100%">
+          <Box>
+            <Route exact path="/dashboard" component={DefaultDashboard} />
+            <Route exact path="/dashboard/stores" component={StorePage} />
+            {/* <Route path="/statistics" component={StoreList} /> */}
+            {/* <Route path="/settings" component={StoreList} /> */}
+            {/* <Route path="/help" component={StoreList} /> */}
+          </Box>
+        </Flex>
       </Flex>
     </Box>
   );
