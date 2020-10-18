@@ -16,10 +16,12 @@ const SignUpNextButton = (props: BasicInfo) => {
     <Button
       type="button"
       isDisabled={!!disabled}
+      onClick={() => nextStep()}
       width="full"
       mt={4}
-      color={"blue.500"}
-      onClick={() => nextStep()}
+      color="white"
+      bg="red.400"
+      _hover={{ bg: "red.500" }}
     >
       {label}
     </Button>

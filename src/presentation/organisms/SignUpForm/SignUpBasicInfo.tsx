@@ -39,31 +39,78 @@ const SignUpBasicInfo = (props: BasicInfo) => {
 
   return (
     <Fragment>
-      <FormControl>
-        <FormLabel>¿Cómo se llama tu tienda?</FormLabel>
-        <Input type="text" placeholder={example.name} isRequired={true} />
-      </FormControl>
-
-      <FormControl my="4">
-        <FormLabel>Ingresa tu nombre</FormLabel>
+      <FormControl mb="4">
+        <FormLabel fontWeight="regular" color="gray.500">
+          Ingresa tu correo electrónico
+        </FormLabel>
         <Input
           type="email"
-          placeholder="Ejemplo: Pedro Pérez"
+          placeholder={example.email}
+          size="sm"
           isRequired={true}
+          borderWidth="1"
+          borderColor="gray.500"
+          borderRadius="lg"
         />
       </FormControl>
 
-      <FormControl my="4">
-        <FormLabel>Ingresa tu correo electrónico</FormLabel>
-        <Input type="email" placeholder={example.email} isRequired={true} />
+      <FormControl mb="4">
+        <FormLabel fontWeight="regular" color="gray.500">
+          Confirma tu correo electrónico
+        </FormLabel>
+        <Input
+          type="email"
+          placeholder={example.email}
+          size="sm"
+          isRequired={true}
+          borderWidth="1"
+          borderColor="gray.500"
+          borderRadius="lg"
+        />
       </FormControl>
 
-      <FormControl>
-        <FormLabel>Contraseña</FormLabel>
+      <FormControl mb="4">
+        <FormLabel fontWeight="regular" color="gray.500">
+          Ingresa tu nombre
+        </FormLabel>
+        <Input
+          type="email"
+          placeholder="Ejemplo: Pedro Pérez"
+          size="sm"
+          isRequired={true}
+          borderWidth="1"
+          borderColor="gray.500"
+          borderRadius="lg"
+        />
+      </FormControl>
+
+      <FormControl mb="4">
+        <FormLabel fontWeight="regular" color="gray.500">
+          Contraseña
+        </FormLabel>
         <Input
           type="password"
           placeholder="Ingresa tu contraseña"
+          size="sm"
           isRequired={true}
+          borderWidth="1"
+          borderColor="gray.500"
+          borderRadius="lg"
+        />
+      </FormControl>
+
+      <FormControl mb="4">
+        <FormLabel fontWeight="regular" color="gray.500">
+          Confirma tu contraseña
+        </FormLabel>
+        <Input
+          type="password"
+          placeholder="Asegúrate que coincida"
+          size="sm"
+          isRequired={true}
+          borderWidth="1"
+          borderColor="gray.500"
+          borderRadius="lg"
         />
       </FormControl>
 
@@ -78,7 +125,7 @@ const SignUpBasicInfo = (props: BasicInfo) => {
 
       <GoToNextButton
         nextStep={() => nextStep()}
-        label={"Comenzar"}
+        label="Registrar"
         disabled={!tos}
       />
     </Fragment>
