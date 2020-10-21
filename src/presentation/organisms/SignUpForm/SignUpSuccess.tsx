@@ -36,8 +36,7 @@ const SignUpSuccess = (props: any) => {
 
       <List mb="2">
         <ListItem>
-          <ListIcon icon="check-circle" color="green.500" /> Entregar
-          información valiosa a tus clientes
+          <ListIcon icon="check-circle" color="green.500" /> Informar a tus clientes
         </ListItem>
         <ListItem>
           <ListIcon icon="check-circle" color="green.500" /> Gestionar tu
