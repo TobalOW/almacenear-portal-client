@@ -25,7 +25,7 @@ interface Store {
 }
 
 const StoreItem = (props: any) => {
-  const { store } = props;
+  const { store, manageProducts } = props;
   const storeDictionary: Store = {
     address: "Dirección",
     giro: "Giro",
@@ -87,7 +87,13 @@ const StoreItem = (props: any) => {
           />
         </Box>
         <Flex as="div" direction="column" width="39%">
-          <Button bg="red.400" size="sm" color="white" mb="1">
+          <Button
+            bg="red.400"
+            size="sm"
+            color="white"
+            mb="1"
+            onClick={() => manageProducts(store)}
+          >
             Ver productos
           </Button>
           <Button bg="red.400" size="sm" color="white">

@@ -11,7 +11,7 @@ import {
 
 import GoToNextButton from "./SignUpNext";
 
-import getRandom from "../../../utils/get-random";
+import { getRandom } from "../../../utils";
 
 interface BasicInfo {
   hashKey: string;

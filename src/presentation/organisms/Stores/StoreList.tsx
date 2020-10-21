@@ -1,18 +1,11 @@
-import React from "react";
-import { Flex, List, ListItem } from "@chakra-ui/core";
+import React, { useState } from "react";
+import { Box, Grid, List, ListItem } from "@chakra-ui/core";
 
-import { StoreItem } from "./StoreItem";
+import { Store } from "../../../interfaces";
 
-interface Store {
-  id: number;
-  name: string;
-  address: string;
-  rut: string;
-  type: string;
-  patente: string;
-  giro: string;
-  picture: string;
-}
+import Modal from "../../organisms/Modal";
+
+import { StoreItem, StoreProducts } from "./index";
 
 const devStores: Store[] = [
   {
@@ -23,7 +16,7 @@ const devStores: Store[] = [
     type: "Verdulería",
     patente: "Placeholder",
     giro: "Placeholder",
-    picture: "https://via.placeholder.com/500x300",
+    picture: "https://via.placeholder.com/500x220",
   },
   {
     id: 2,
@@ -33,7 +26,7 @@ const devStores: Store[] = [
     type: "Panadería",
     patente: "Placeholder",
     giro: "Placeholder",
-    picture: "https://via.placeholder.com/500x300",
+    picture: "https://via.placeholder.com/500x220",
   },
   {
     id: 3,
@@ -43,7 +36,7 @@ const devStores: Store[] = [
     type: "Bicicletas",
     patente: "Placeholder",
     giro: "Placeholder",
-    picture: "https://via.placeholder.com/500x300",
+    picture: "https://via.placeholder.com/500x220",
   },
   {
     id: 4,
@@ -53,19 +46,31 @@ const devStores: Store[] = [
     type: "Bicicletas",
     patente: "Placeholder",
     giro: "Placeholder",
-    picture: "https://via.placeholder.com/500x300",
+    picture: "https://via.placeholder.com/500x220",
   },
 ];
 
 const StoreList = () => {
+  const [storeProductsModal, setStoreProducts] = useState(undefined);
+
   return (
-    <Flex as={List} wrap="wrap" justifyContent="space-around">
-      {devStores.map((store) => (
-        <ListItem key={store.id} my="2">
-          <StoreItem store={store} />
-        </ListItem>
-      ))}
-    </Flex>
+    <Box p="5">
+      <Grid as={List} gridTemplateColumns="1fr 1fr" gridGap="15px">
+        {devStores.map((store) => (
+          <ListItem key={store.id}>
+            <StoreItem store={store} manageProducts={setStoreProducts} />
+          </ListItem>
+        ))}
+      </Grid>
+      <Modal
+        isOpen={storeProductsModal}
+        size="960px"
+        onSave={() => setStoreProducts(undefined)}
+        onClose={() => setStoreProducts(undefined)}
+      >
+        <StoreProducts store={storeProductsModal} />
+      </Modal>
+    </Box>
   );
 };
 
