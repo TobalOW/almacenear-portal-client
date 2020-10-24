@@ -3,24 +3,24 @@ import React from "react";
 import { Button } from "@chakra-ui/core";
 
 interface BasicInfo {
-  nextStep: Function;
+  callback: Function;
   label?: String;
   disabled?: Boolean;
 }
 
 const SignUpNextButton = (props: BasicInfo) => {
-  const nextStep = props.nextStep as Function;
+  const callback = props.callback as Function;
   const { disabled = false, label = "Siguiente" } = props;
 
   return (
     <Button
       type="button"
-      isDisabled={!!disabled}
-      onClick={() => nextStep()}
-      width="full"
       mt={4}
-      color="white"
       bg="red.400"
+      width="full"
+      color="white"
+      isDisabled={!!disabled}
+      onClick={callback as any}
       _hover={{ bg: "red.500" }}
     >
       {label}

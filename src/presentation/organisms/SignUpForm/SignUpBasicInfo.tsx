@@ -9,20 +9,29 @@ import {
   Checkbox,
 } from "@chakra-ui/core";
 
-import GoToNextButton from "./SignUpNext";
+import { signup } from "../../../domain/redux/reducers/user";
 
 import { getRandom } from "../../../utils";
 
+import GoToNextButton from "./SignUpNext";
+
 interface BasicInfo {
   hashKey: string;
-  nextStep?: Function;
+  callback?: Function;
 }
 
 const SignUpBasicInfo = (props: BasicInfo) => {
-  const nextStep = props.nextStep as Function;
-
+  // TOS Hooks
   const [tos, setTos] = useState(false);
   const toggleTos = () => setTos(!tos);
+
+  // Form hooks
+  const [email, setEmail] = useState("");
+  const [emailConfirm, setEmailConfirm] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const getExample = () => {
     const examples = [
@@ -34,8 +43,7 @@ const SignUpBasicInfo = (props: BasicInfo) => {
     return examples[getRandom(0, examples.length)];
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [example, _setExample] = useState(getExample);
+  const [example] = useState(getExample);
 
   return (
     <Fragment>
@@ -46,6 +54,8 @@ const SignUpBasicInfo = (props: BasicInfo) => {
         <Input
           type="email"
           placeholder={example.email}
+          value={email}
+          onChange={({ target }: any) => setEmail(target.value)}
           size="sm"
           isRequired={true}
           borderWidth="1"
@@ -61,6 +71,8 @@ const SignUpBasicInfo = (props: BasicInfo) => {
         <Input
           type="email"
           placeholder={example.email}
+          value={emailConfirm}
+          onChange={({ target }: any) => setEmailConfirm(target.value)}
           size="sm"
           isRequired={true}
           borderWidth="1"
@@ -75,7 +87,26 @@ const SignUpBasicInfo = (props: BasicInfo) => {
         </FormLabel>
         <Input
           type="email"
-          placeholder="Ejemplo: Pedro Pérez"
+          placeholder="Ejemplo: Pedro"
+          value={firstName}
+          onChange={({ target }: any) => setFirstName(target.value)}
+          size="sm"
+          isRequired={true}
+          borderWidth="1"
+          borderColor="gray.500"
+          borderRadius="lg"
+        />
+      </FormControl>
+
+      <FormControl mb="4">
+        <FormLabel fontWeight="regular" color="gray.500">
+          Ingresa tu apellido
+        </FormLabel>
+        <Input
+          type="email"
+          placeholder="Ejemplo: Pérez"
+          value={lastName}
+          onChange={({ target }: any) => setLastName(target.value)}
           size="sm"
           isRequired={true}
           borderWidth="1"
@@ -91,6 +122,8 @@ const SignUpBasicInfo = (props: BasicInfo) => {
         <Input
           type="password"
           placeholder="Ingresa tu contraseña"
+          value={password}
+          onChange={({ target }: any) => setPassword(target.value)}
           size="sm"
           isRequired={true}
           borderWidth="1"
@@ -106,6 +139,8 @@ const SignUpBasicInfo = (props: BasicInfo) => {
         <Input
           type="password"
           placeholder="Asegúrate que coincida"
+          value={passwordConfirm}
+          onChange={({ target }: any) => setPasswordConfirm(target.value)}
           size="sm"
           isRequired={true}
           borderWidth="1"
@@ -124,7 +159,7 @@ const SignUpBasicInfo = (props: BasicInfo) => {
       </Box>
 
       <GoToNextButton
-        nextStep={() => nextStep()}
+        callback={signup({ email, firstName, lastName, password })}
         label="Registrar"
         disabled={!tos}
       />

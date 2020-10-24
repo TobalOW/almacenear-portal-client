@@ -1,4 +1,5 @@
+import axiosInstance from "./axios";
 import getRandom from "./get-random";
 import requiredParam from "./required-param";
 
-export { getRandom, requiredParam };
+export { axiosInstance, getRandom, requiredParam };

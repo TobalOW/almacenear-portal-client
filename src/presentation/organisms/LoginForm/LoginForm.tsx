@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import {
   Box,
@@ -11,10 +11,16 @@ import {
   Stack,
   Checkbox,
   Button,
-  Image,
 } from "@chakra-ui/core";
 
+import { login } from "../../../domain/redux/reducers/user";
+
+import Logo from "../../atoms/Logo";
+
 const LoginForm = () => {
+  const [email, setEmail] = useState(undefined);
+  const [password, setPassword] = useState(undefined);
+
   useEffect(() => {
     document.title = "Iniciar sesión | Almacenear";
   }, []);
@@ -31,13 +37,8 @@ const LoginForm = () => {
       backgroundColor={"white"}
       position="relative"
     >
-      <Box position="absolute" left="0" right="0" top="-200px">
-        <Image
-          src="https://via.placeholder.com/300x180"
-          alt="Almacenear"
-          title="Te damos la bienvenida a Almacenear"
-          mx="auto"
-        />
+      <Box position="absolute" left="0" right="0" top="-120px">
+        <Logo />
       </Box>
 
       <Box as="section" p={4}>
@@ -53,6 +54,8 @@ const LoginForm = () => {
             <Input
               type="email"
               placeholder="Ejemplo: almacen@ejemplo.com"
+              value={email}
+              onChange={({ target }: any) => setEmail(target.value)}
               isRequired={true}
               size="sm"
               borderWidth="1"
@@ -66,6 +69,8 @@ const LoginForm = () => {
             <Input
               type="password"
               placeholder="Ingresa tu contraseña"
+              value={password}
+              onChange={({ target }: any) => setPassword(target.value)}
               isRequired={true}
               size="sm"
               borderWidth="1"
@@ -83,18 +88,18 @@ const LoginForm = () => {
             </Box>
           </Stack>
 
-          <RouterLink to="/dashboard">
-            <Button
-              type="button"
-              width="full"
-              my="4"
-              bg="red.500"
-              color="white"
-              shadow="md"
-            >
-              Iniciar sesión
-            </Button>
-          </RouterLink>
+          <Button
+            type="button"
+            width="full"
+            my="4"
+            bg="red.500"
+            color="white"
+            shadow="md"
+            onClick={() => login({ email, password })}
+          >
+            Iniciar sesión
+          </Button>
+
           <Text textAlign="center">
             ¿Aún no tienes cuenta?
             <RouterLink to="/signup">
