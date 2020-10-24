@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useCallback, useState } from "react";
 
 import {
   Box,
@@ -11,19 +11,23 @@ import {
 
 import { signup } from "../../../domain/redux/reducers/user";
 
-import { getRandom } from "../../../utils";
+import { getRandom, requiredParam } from "../../../utils";
+
+import Loader from "../../atoms/Loader";
 
 import GoToNextButton from "./SignUpNext";
+import examples from "./SignUpExamples";
 
 interface BasicInfo {
   hashKey: string;
   callback?: Function;
+  nextStep?: Function;
 }
 
 const SignUpBasicInfo = (props: BasicInfo) => {
-  // TOS Hooks
-  const [tos, setTos] = useState(false);
-  const toggleTos = () => setTos(!tos);
+  const { nextStep = requiredParam() } = props;
+
+  const example = examples[getRandom(0, examples.length)];
 
   // Form hooks
   const [email, setEmail] = useState("");
@@ -33,17 +37,29 @@ const SignUpBasicInfo = (props: BasicInfo) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
 
-  const getExample = () => {
-    const examples = [
-      { name: "Panadería Don Pedro", email: "panaderia@ejemplo.com" },
-      { name: "Carpintería María", email: "carpinteria@ejemplo.com" },
-      { name: "Pastelería Providencia", email: "pasteleria@ejemplo.com" },
-    ];
+  const [tos, setTos] = useState(false);
 
-    return examples[getRandom(0, examples.length)];
-  };
+  const [isLoading, setLoader] = useState(false);
 
-  const [example] = useState(getExample);
+  // Methods
+  const toggleTos = () => setTos(!tos);
+
+  const doSignUpWorkflow = useCallback(async () => {
+    setLoader(true);
+    const userWasCreated = await signup({
+      email,
+      firstName,
+      lastName,
+      password,
+    });
+
+    if (!userWasCreated) {
+      setLoader(false);
+      return;
+    }
+
+    nextStep();
+  }, [email, firstName, lastName, nextStep, password]);
 
   return (
     <Fragment>
@@ -159,9 +175,9 @@ const SignUpBasicInfo = (props: BasicInfo) => {
       </Box>
 
       <GoToNextButton
-        callback={signup({ email, firstName, lastName, password })}
-        label="Registrar"
-        disabled={!tos}
+        callback={doSignUpWorkflow}
+        label={isLoading ? <Loader /> : "Registrar"}
+        disabled={!tos || isLoading}
       />
     </Fragment>
   );

@@ -22,7 +22,7 @@ const SideMenu = () => {
           <ListItem pl="2" pb="4" key={link.to}>
             <Link to={"/dashboard/" + link.to}>
               <ListIcon icon={link.icon} />
-              <Button variant="link" variantColor="red.500">
+              <Button variant="link" color="white">
                 {link.label}
               </Button>
             </Link>

@@ -27,6 +27,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-step-wizard": "^5.3.5",
+    "react-tiny-virtual-list": "^2.2.0",
+    "react-virtuoso": "^0.20.0",
     "typescript": "^3.9.7"
   },
   "scripts": {

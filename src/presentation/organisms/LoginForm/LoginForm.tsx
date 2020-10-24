@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import {
   Box,
   Text,
@@ -18,12 +18,23 @@ import { login } from "../../../domain/redux/reducers/user";
 import Logo from "../../atoms/Logo";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState(undefined);
-  const [password, setPassword] = useState(undefined);
-
+  const history = useHistory();
   useEffect(() => {
     document.title = "Iniciar sesión | Almacenear";
   }, []);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const doSignUpWorkflow = async () => {
+    const isLogged = await login({ email, password });
+
+    if (!isLogged) {
+      return;
+    }
+
+    history.push("/dashboard");
+  };
 
   return (
     <Box
@@ -92,10 +103,10 @@ const LoginForm = () => {
             type="button"
             width="full"
             my="4"
-            bg="red.500"
+            variantColor="red"
             color="white"
             shadow="md"
-            onClick={() => login({ email, password })}
+            onClick={doSignUpWorkflow}
           >
             Iniciar sesión
           </Button>

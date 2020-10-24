@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://apidos.almacenear.cl/api",
+  baseURL: "http://demo5731898.mockable.io/",
 });
 
 export default axiosInstance;

@@ -20,36 +20,38 @@ const slice = createSlice({
   },
 });
 
-// Actions
-const { loginSuccess, logoutSuccess } = slice.actions;
+// Dispatchers
+// const { loginSuccess, logoutSuccess } = slice.actions;
 
-const login = (credentials) => async (dispatch) => {
+// Actions
+export const login = async (credentials) => {
   try {
-    await axiosInstance.post("/auth/signin", credentials);
-    notify("success", "Inicio de sesión exitoso");
-    dispatch(loginSuccess(credentials.username));
+    const { data } = await axiosInstance.post("/auth/signin", credentials);
+    // const { accessToken } = data;
+    // dispatch(loginSuccess({ accessToken }));
+    notify("success", "¡Bienvenido!");
+    return data;
   } catch (e) {
     notify("warning", "Ha ocurrido un error");
   }
 };
 
-const signup = (credentials) => async () => {
+export const signup = async (credentials) => {
   try {
-    const response = await axiosInstance.post("/auth/signup", credentials);
+    await axiosInstance.post("/auth/signup", credentials);
     notify("success", "Registro exitoso");
-    return response;
+    return true;
   } catch (_error) {
     notify("warning", "Ha ocurrido un error");
   }
 };
 
-const logout = () => async (dispatch) => {
+export const logout = () => async (dispatch) => {
   try {
-    return dispatch(logoutSuccess());
+    // return dispatch(logoutSuccess());
   } catch (e) {
     return console.error(e.message);
   }
 };
 
-export { signup, login, logout };
 export default slice.reducer;

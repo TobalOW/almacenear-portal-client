@@ -1,4 +1,4 @@
 export { StoreList } from "./StoreList";
-export { StoreItem } from "./StoreItem";
-export { StoreProducts } from "./StoreProducts";
-export { StoreProductSingle } from "./StoreProductSingle";
+export { StoreItem } from "./StoreSingle";
+export { ProductManager } from "../Product/ProductManager";
+export { ProductSingle } from "../Product/ProductSingle";

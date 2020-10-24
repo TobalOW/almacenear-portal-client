@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Grid, List, ListItem } from "@chakra-ui/core";
 
-import { Store } from "../../../interfaces";
+import { Product, Store } from "../../../interfaces";
 
 import Modal from "../../organisms/Modal";
 
-import { StoreItem, StoreProducts } from "./index";
+import { StoreItem, ProductManager } from "./index";
+import { getProducts } from "../../../domain/redux/reducers/shop";
 
 const devStores: Store[] = [
   {
@@ -51,24 +52,37 @@ const devStores: Store[] = [
 ];
 
 const StoreList = () => {
-  const [storeProductsModal, setStoreProducts] = useState(undefined);
+  const [availableProducts, setAvailableProducts] = useState([] as Product[]);
+
+  useEffect(() => {
+    setGlobalProducts();
+  }, [availableProducts.length]);
+
+  const setGlobalProducts = () => {
+    getProducts().then(setAvailableProducts);
+  };
+
+  const [productManagerModal, setProductManager] = useState(null);
 
   return (
     <Box p="5">
       <Grid as={List} gridTemplateColumns="1fr 1fr" gridGap="15px">
         {devStores.map((store) => (
           <ListItem key={store.id}>
-            <StoreItem store={store} manageProducts={setStoreProducts} />
+            <StoreItem store={store} manageProducts={setProductManager} />
           </ListItem>
         ))}
       </Grid>
       <Modal
-        isOpen={storeProductsModal}
+        isOpen={!!productManagerModal}
         size="960px"
-        onSave={() => setStoreProducts(undefined)}
-        onClose={() => setStoreProducts(undefined)}
+        onSave={() => setProductManager(null)}
+        onClose={() => setProductManager(null)}
       >
-        <StoreProducts store={storeProductsModal} />
+        <ProductManager
+          store={productManagerModal}
+          availableProducts={availableProducts}
+        />
       </Modal>
     </Box>
   );

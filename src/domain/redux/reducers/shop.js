@@ -9,6 +9,7 @@ const slice = createSlice({
   initialState: {
     shop: null,
     shops: [],
+    availableProducts: [],
   },
   reducers: {
     getShopById: ({ shops }) => (id = "") => {
@@ -20,14 +21,22 @@ const slice = createSlice({
 // Actions // dispatchers
 // const { loginSuccess, logoutSuccess } = slice.actions;
 
-const getProducts = () => {
+export const getProducts = async () => {
   try {
-    const products = axiosInstance.get("/products");
-    return products;
+    const { data } = await axiosInstance.get("/products");
+    return data;
   } catch (_error) {
     notify("error", "Ocurrió un error al obtener los productos");
   }
 };
 
-export { getProducts };
+export const getShops = async () => {
+  try {
+    const products = await axiosInstance.get("/shops");
+    return products;
+  } catch (_error) {
+    notify("error", "Ocurrió un error al obtener tus almacenes");
+  }
+};
+
 export default slice.reducer;
