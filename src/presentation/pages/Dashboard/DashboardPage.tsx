@@ -18,7 +18,7 @@ const DashboardPage = () => {
     <Box height="100vh" width="100%">
       <Navbar />
       <Flex height="full" bg="gray.100">
-        <SideMenu />
+        <Box as={SideMenu} display={["none", "none"]} />
         <Flex direction="column" width="100%">
           <Box>
             <Route exact path="/dashboard" component={DefaultDashboard} />

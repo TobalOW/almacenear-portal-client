@@ -18,15 +18,15 @@ import { Product, Store } from "../../../interfaces";
 import { ProductSingle } from "../Stores/index";
 
 interface StoreProductsProps {
-  store: Store | null;
-  availableProducts: Product[];
+  store?: Store;
+  allProducts: Product[];
 }
 
 export const ProductManager = (props: StoreProductsProps) => {
-  const { store, availableProducts = [] } = props;
+  const { store, allProducts = [] } = props;
 
   const [storeProducts, setStoreProducts] = useState([] as Product[]);
-  const [filteredProducts, setFilteredProducts] = useState(availableProducts);
+  const [filteredProducts, setFilteredProducts] = useState(allProducts);
 
   /**
    * @method filterProductsByName
@@ -39,7 +39,7 @@ export const ProductManager = (props: StoreProductsProps) => {
       return products.filter(({ description }) => description.match(regexp));
     };
 
-    setFilteredProducts(_filter(availableProducts));
+    setFilteredProducts(_filter(allProducts));
     setStoreProducts(_filter(storeProducts));
   };
 
@@ -126,33 +126,32 @@ export const ProductManager = (props: StoreProductsProps) => {
         </Heading>
       </Box>
 
-      <Flex>
-        <Box width={1 / 2}>
+      <Flex direction={["column", "row"]}>
+        <Box width={["50%", "100%"]}>
           {/* Render products added to Store */}
-          <Box as="header" mb="5" height="80px" textAlign="center">
-            <Text as="p" fontSize="14px">
+          <Box as="header" textAlign="center" mb="5" height="80px" rounded="lg">
+            <Text as="p" fontSize="14px" mb="1">
               Buscar productos
             </Text>
-            <FormControl>
+            <FormControl border="1px solid #676767">
               <Input
                 type="text"
                 onChange={(e: any) => filterProductsByName(e.target.value)}
                 placeholder="Ingresa tu búsqueda aquí"
-                width="80%"
                 mx="auto"
+                border="none"
               />
             </FormControl>
           </Box>
 
-          {!availableProducts.length &&
+          {!allProducts.length &&
             [1, 2, 3].map((index) => {
               return <Skeleton height="100px" my="1" key={index} />;
             })}
 
-          {!!availableProducts.length &&
-            productManagementRenderer(filteredProducts)}
+          {!!allProducts.length && productManagementRenderer(filteredProducts)}
         </Box>
-        <Box width={1 / 2}>
+        <Box width={["50%", "100%"]}>
           {/* Render all filtered products */}
           <Flex
             as="header"

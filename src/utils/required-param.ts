@@ -1,4 +1,4 @@
-export default (paramName = "") => {
+export default (paramName = ""): any => {
   if (paramName) {
     throw new Error(`Parameter "${paramName}" is required`);
   }

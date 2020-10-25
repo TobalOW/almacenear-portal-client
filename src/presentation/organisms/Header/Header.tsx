@@ -14,6 +14,7 @@ export default (props: any) => {
       minHeight="100px"
       maxHeight="200px"
       width="full"
+      direction={["column", "row"]}
       justifyContent="space-between"
       align="center"
     >

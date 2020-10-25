@@ -68,7 +68,7 @@ const StoreItem = (props: any) => {
   return (
     <Card maxWidth="700px" maxHeight="400px">
       <Box as="header">
-        <Heading as="h5" size="md">
+        <Heading as="h5" fontSize="18px" fontWeight="regular">
           {store.name}
         </Heading>
       </Box>
@@ -83,7 +83,7 @@ const StoreItem = (props: any) => {
             src={store.picture}
             title={store.name}
             alt={store.name}
-            rounded="sm"
+            rounded="md"
             height="215px"
           />
         </Box>
