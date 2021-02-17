@@ -36,7 +36,8 @@ const SignUpSuccess = (props: any) => {
 
       <List mb="2">
         <ListItem>
-          <ListIcon icon="check-circle" color="green.500" /> Informar a tus clientes
+          <ListIcon icon="check-circle" color="green.500" /> Informar a tus
+          clientes
         </ListItem>
         <ListItem>
           <ListIcon icon="check-circle" color="green.500" /> Gestionar tu
@@ -51,7 +52,7 @@ const SignUpSuccess = (props: any) => {
       {loading ? (
         <Loader bg="gray.100" />
       ) : (
-        <GoToNextButton label="Comenzar" nextStep={goToLogin} />
+        <GoToNextButton label="Comenzar" callback={goToLogin} />
       )}
     </Fragment>
   );

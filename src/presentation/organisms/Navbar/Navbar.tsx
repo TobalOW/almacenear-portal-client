@@ -1,5 +1,7 @@
 import React from "react";
-import { Flex, Link, Heading, Image } from "@chakra-ui/core";
+import { Flex, Link, Heading } from "@chakra-ui/core";
+
+import Logo from "../../atoms/Logo";
 
 const Navbar = () => {
   return (
@@ -12,19 +14,13 @@ const Navbar = () => {
       bg="red.500"
       width="100%"
       color="white"
-      maxHeight="75px"
+      height="70px"
     >
       <Flex align="center" mr={5}>
         <Heading color="white" as="h1" size="lg" flex="">
           <Link href="/dashboard">
             <Flex align="center">
-              <Image
-                src="https://via.placeholder.com/300x180"
-                alt="Almacenear"
-                title="Bienvenido a Almacenear"
-                maxHeight="60px"
-                p="5px"
-              />
+              <Logo size="sm" />
               <Heading as="h3" size="md" ml="5">
                 Portal del Almacenero
               </Heading>

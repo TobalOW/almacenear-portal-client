@@ -45,13 +45,7 @@ const ModalComponent = (props: ModalProps) => {
         <ModalBody>{children}</ModalBody>
 
         <Flex as={ModalFooter} justifyContent="space-between">
-          <Button
-            type="button"
-            w="45%"
-            bg="gray.500"
-            color="white"
-            onClick={onClose}
-          >
+          <Button type="button" w="45%" variantColor="gray" onClick={onClose}>
             {closeLabel}
           </Button>
           <Button

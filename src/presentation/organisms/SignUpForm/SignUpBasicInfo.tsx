@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useCallback, useState } from "react";
 
 import {
   Box,
@@ -9,33 +9,57 @@ import {
   Checkbox,
 } from "@chakra-ui/core";
 
-import GoToNextButton from "./SignUpNext";
+import { signup } from "../../../domain/redux/reducers/user";
 
-import { getRandom } from "../../../utils";
+import { getRandom, requiredParam } from "../../../utils";
+
+import Loader from "../../atoms/Loader";
+
+import GoToNextButton from "./SignUpNext";
+import examples from "./SignUpExamples";
 
 interface BasicInfo {
   hashKey: string;
+  callback?: Function;
   nextStep?: Function;
 }
 
 const SignUpBasicInfo = (props: BasicInfo) => {
-  const nextStep = props.nextStep as Function;
+  const { nextStep = requiredParam() } = props;
+
+  const example = examples[getRandom(0, examples.length)];
+
+  // Form hooks
+  const [email, setEmail] = useState("");
+  const [emailConfirm, setEmailConfirm] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const [tos, setTos] = useState(false);
+
+  const [isLoading, setLoader] = useState(false);
+
+  // Methods
   const toggleTos = () => setTos(!tos);
 
-  const getExample = () => {
-    const examples = [
-      { name: "Panadería Don Pedro", email: "panaderia@ejemplo.com" },
-      { name: "Carpintería María", email: "carpinteria@ejemplo.com" },
-      { name: "Pastelería Providencia", email: "pasteleria@ejemplo.com" },
-    ];
+  const doSignUpWorkflow = useCallback(async () => {
+    setLoader(true);
+    const userWasCreated = await signup({
+      email,
+      firstName,
+      lastName,
+      password,
+    });
 
-    return examples[getRandom(0, examples.length)];
-  };
+    if (!userWasCreated) {
+      setLoader(false);
+      return;
+    }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [example, _setExample] = useState(getExample);
+    nextStep();
+  }, [email, firstName, lastName, nextStep, password]);
 
   return (
     <Fragment>
@@ -46,6 +70,8 @@ const SignUpBasicInfo = (props: BasicInfo) => {
         <Input
           type="email"
           placeholder={example.email}
+          value={email}
+          onChange={({ target }: any) => setEmail(target.value)}
           size="sm"
           isRequired={true}
           borderWidth="1"
@@ -61,6 +87,8 @@ const SignUpBasicInfo = (props: BasicInfo) => {
         <Input
           type="email"
           placeholder={example.email}
+          value={emailConfirm}
+          onChange={({ target }: any) => setEmailConfirm(target.value)}
           size="sm"
           isRequired={true}
           borderWidth="1"
@@ -75,7 +103,26 @@ const SignUpBasicInfo = (props: BasicInfo) => {
         </FormLabel>
         <Input
           type="email"
-          placeholder="Ejemplo: Pedro Pérez"
+          placeholder="Ejemplo: Pedro"
+          value={firstName}
+          onChange={({ target }: any) => setFirstName(target.value)}
+          size="sm"
+          isRequired={true}
+          borderWidth="1"
+          borderColor="gray.500"
+          borderRadius="lg"
+        />
+      </FormControl>
+
+      <FormControl mb="4">
+        <FormLabel fontWeight="regular" color="gray.500">
+          Ingresa tu apellido
+        </FormLabel>
+        <Input
+          type="email"
+          placeholder="Ejemplo: Pérez"
+          value={lastName}
+          onChange={({ target }: any) => setLastName(target.value)}
           size="sm"
           isRequired={true}
           borderWidth="1"
@@ -91,6 +138,8 @@ const SignUpBasicInfo = (props: BasicInfo) => {
         <Input
           type="password"
           placeholder="Ingresa tu contraseña"
+          value={password}
+          onChange={({ target }: any) => setPassword(target.value)}
           size="sm"
           isRequired={true}
           borderWidth="1"
@@ -106,6 +155,8 @@ const SignUpBasicInfo = (props: BasicInfo) => {
         <Input
           type="password"
           placeholder="Asegúrate que coincida"
+          value={passwordConfirm}
+          onChange={({ target }: any) => setPasswordConfirm(target.value)}
           size="sm"
           isRequired={true}
           borderWidth="1"
@@ -124,9 +175,9 @@ const SignUpBasicInfo = (props: BasicInfo) => {
       </Box>
 
       <GoToNextButton
-        nextStep={() => nextStep()}
-        label="Registrar"
-        disabled={!tos}
+        callback={doSignUpWorkflow}
+        label={isLoading ? <Loader /> : "Registrar"}
+        disabled={!tos || isLoading}
       />
     </Fragment>
   );

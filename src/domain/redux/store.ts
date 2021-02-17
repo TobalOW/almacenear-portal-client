@@ -1,17 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import RootReducer from "./reducers/RootReducer";
+import { combineReducers } from "redux";
 
-const store = configureStore({
-  reducer: RootReducer,
-});
+// slices
+import user from "./reducers/user";
+import shop from "./reducers/shop";
 
-if (process.env.NODE_ENV === "development" && module.hot) {
-  module.hot.accept("./reducers/RootReducer", () => {
-    const newRootReducer = RootReducer;
-    store.replaceReducer(newRootReducer);
-  });
-}
-
-export type AppDispatch = typeof store.dispatch;
+// reduce
+const reducer = combineReducers({ user, shop });
+const store = configureStore({ reducer });
 
 export default store;
